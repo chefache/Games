@@ -23,15 +23,16 @@ namespace First_atempt
             var firstNumToWork = new FirstNumber(firstNum, firstNumBulls, firstNumCows, firstNumBulls + firstNumCows);
             var secondNumToWork = new SecondNumber(secondNum, secondNumBulls, secondNumCows, secondNumBulls + secondNumCows);
 
-            
+             var numWithLessBullsAndCows = FindNumberWithLessBullsAndCows(firstNumToWork, secondNumToWork);
 
         }
-        public void FindNumberWithLessBullsAndCows(int firstNumber, int secondNumber)
+         public static object FindNumberWithLessBullsAndCows(FirstNumber firstNumber, SecondNumber secondNumber)
         {
-            if (firstNumber > secondNumber)
+            if (firstNumber.Total > secondNumber.Total)
             {
-                Console.WriteLine(string.Join("", firstNumber));
+                return secondNumber;
             }
+            return firstNumber;
         }
     }
 }
