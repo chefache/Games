@@ -34,12 +34,39 @@ namespace First_atempt
                 missingNum = SingleNumberGenerator.Generate(firstNumToWork.Digits, secondNumToWork.Digits);
             }
 
-
-
+            var firstNumBullsAndCows = FindAllBullsAndCows(firstNumToWork.Digits, missingNum, firstNumBulls, firstNumCows);
+            var secondNumBullsAndCows = FindAllBullsAndCows(secondNumToWork.Digits, missingNum, secondNumBulls, secondNumCows);
 
 
         }
 
+        public static List<int[]> FindAllBullsAndCows(List<int> number, int missingnum, int bulls, int cows)
+        {
+            var result = new List<int[]>();
+            var bullsArray = new int[4];
+            var cowsArray = new int[4];
+
+            for (int i = 0; i < number.Count; i++)
+            {
+                int temp = number[i];
+                number[i] = missingnum;
+                Console.WriteLine(string.Join("", number));
+                int currentBulls = int.Parse(Console.ReadLine());
+                int currentCows = int.Parse(Console.ReadLine());
+                if (currentBulls < bulls)
+                {
+                    bullsArray[i] = temp;
+                }
+                if (currentCows < cows)
+                {
+                    cowsArray[i] = temp;
+                }
+                number[i] = temp;
+            }
+            result.Add(bullsArray);
+            result.Add(cowsArray);
+            return result;
+        }
 
         public static List<int> AddMissingNum(List<int> number, int missingNumber, int bulls, int cows)
         {
