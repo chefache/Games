@@ -1,4 +1,4 @@
-﻿using First_atempt.NumberGenerators;
+using First_atempt.NumberGenerators;
 using System;
 using System.Collections.Generic;
 
@@ -23,16 +23,40 @@ namespace First_atempt
             var firstNumToWork = new FirstNumber(firstNum, firstNumBulls, firstNumCows, firstNumBulls + firstNumCows);
             var secondNumToWork = new SecondNumber(secondNum, secondNumBulls, secondNumCows, secondNumBulls + secondNumCows);
 
-             var numWithLessBullsAndCows = FindNumberWithLessBullsAndCows(firstNumToWork, secondNumToWork);
+            if (firstNumToWork.Total >= secondNumToWork.Total)
+            {
+                AddMissingNum(secondNumToWork.Digits, missingNum, secondNumBulls, secondNumCows);
+                missingNum = SingleNumberGenerator.Generate(firstNumToWork.Digits, secondNumToWork.Digits);
+            }
+            if (firstNumToWork.Total <= secondNumToWork.Total)
+            {
+                AddMissingNum(firstNumToWork.Digits, missingNum, secondNumBulls, secondNumCows);
+                missingNum = SingleNumberGenerator.Generate(firstNumToWork.Digits, secondNumToWork.Digits);
+            }
+
+
+
+
 
         }
-         public static object FindNumberWithLessBullsAndCows(FirstNumber firstNumber, SecondNumber secondNumber)
+
+
+        public static List<int> AddMissingNum(List<int> number, int missingNumber, int bulls, int cows)
         {
-            if (firstNumber.Total > secondNumber.Total)
+            for (int i = 0; i < number.Count; i++)
             {
-                return secondNumber;
+                int temp = number[i];
+                number[i] = missingNumber;
+                Console.WriteLine(string.Join("", number));
+                int currentBylls = int.Parse(Console.ReadLine());
+                int currentCows = int.Parse(Console.ReadLine());
+                if (currentBylls > bulls || currentCows > cows)
+                {
+                    return number;
+                }
+                number[i] = temp;
             }
-            return firstNumber;
-        }
+            return number;
+        }       
     }
 }
