@@ -42,9 +42,10 @@ namespace Bulls_and_Cowd__Reversed____final
                 {
                     Console.WriteLine($"My firs guess is: {computerGuess}");
                 }
-
-                Console.WriteLine($"My {guessCounter} guess is: {computerGuess}");
-                
+                else
+                {
+                    Console.WriteLine($"My {guessCounter} guess is: {computerGuess}");
+                }
 
                 Console.Write("Enter bulls: ");
                 int bulls = int.Parse(Console.ReadLine());
